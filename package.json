@@ -1,0 +1,34 @@
+{
+  "name": "z3r-patch",
+  "version": "1.0.0",
+  "description": "A JS module for patching ALTTPR seeds",
+  "main": "index.js",
+  "type": "module",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "*.js",
+    "*.json",
+    "*.md",
+    "*.d.ts",
+    ".gitignore"
+  ],
+  "repository": {
+    "url": "https://github.com/JaxxyIV/z3r-patch.git",
+    "type": "git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": {
+    "name": "Jaxxy",
+    "url": "https://github.com/JaxxyIV"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bps": "^2.0.1",
+    "center-align": "^1.0.1"
+  }
+}
