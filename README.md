@@ -19,7 +19,7 @@ import patch from "npm:z3r-patch";
 To use z3r-js in your project, use ES6 import syntax. You cannot import z3r-js with `require`:
 ```js
 import patch from "z3r-patch"; // OK!
-const { default: patch } = await("z3r-patch"); // OK!
+const { default: patch } = await import("z3r-patch"); // OK!
 const patch = require("z3r-patch"); // WRONG!
 ```
 

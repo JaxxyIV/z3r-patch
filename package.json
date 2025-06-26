@@ -8,6 +8,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "zelda",
+    "snes",
+    "alttpr",
+    "alttp",
+    "z3r",
+    "randomizer"
+  ],
   "files": [
     "*.js",
     "*.json",
