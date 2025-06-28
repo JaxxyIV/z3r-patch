@@ -7,7 +7,7 @@ z3r-patch is a lightweight JavaScript module for patching randomizer seeds gener
 
 ## Installation
 You can install z3r-patch in your Node.js project with the following command:
-```zsh
+```bash
 npm install z3r-patch
 ```
 If you are using Deno, you can import the module in your source code:
@@ -16,7 +16,7 @@ import patch from "npm:z3r-patch";
 ```
 
 ## Usage
-To use z3r-js in your project, use ES6 import syntax. You cannot import z3r-js with `require`:
+To use z3r-patch in your project, use ES6 import syntax. You cannot import z3r-patch with `require`:
 ```js
 import patch from "z3r-patch"; // OK!
 const { default: patch } = await import("z3r-patch"); // OK!
@@ -27,6 +27,8 @@ After generating your seed on alttpr.com, you can apply it to your legally obtai
 ```js
 import * as fs from "node:fs/promises";
 import patchZ3R from "z3r-patch";
+
+const angelUrl = "https://alttpr-assets.s3.us-east-2.amazonaws.com/angel.1.zspr";
 
 // Generate seed with open 7/7 settings:
 const seed = await fetch("https://alttpr.com/api/randomizer", {
@@ -65,7 +67,7 @@ const seed = await fetch("https://alttpr.com/api/randomizer", {
 }).then(res => res.json());
 
 // Fetch a custom sprite's .zspr file:
-const angel = await fetch("https://alttpr-assets.s3.us-east-2.amazonaws.com/angel.1.zspr")
+const angel = await fetch(angelUrl)
     .then(res => res.arrayBuffer());
 
 // Apply the seed patches and post-generation options:
@@ -83,26 +85,26 @@ await fs.writeFile(`./${seed.hash}.sfc`, rom);
 
 ### API
 ```ts
-export default async function(base: string, seed: SeedAPIData, options: PatchOptions): Promise<Uint8Array>;
+export default function(base: string, seed: SeedAPIData, options: PatchOptions): Promise<Uint8Array>;
 
 interface SeedAPIData {
-    generated: string,
-    hash: string,
-    logic: string,
-    patch: Record<number, number[]>[],
-    size: number,
-    spoiler: object,
-    current_rom_hash?: string
+    generated: string;
+    hash: string;
+    logic: string;
+    patch: Record<number, number[]>[];
+    size: number;
+    spoiler: object;
+    current_rom_hash?: string;
 }
 
 interface PatchOptions {
-    heartSpeed?: "off" | "quarter" | "half" | "normal" | "double",
-    heartColor?: "red" | "blue" | "green" | "yellow",
-    menuSpeed?: "slow" | "normal" | "fast" | "instant",
-    quickswap?: boolean,
-    backgroundMusic?: boolean,
-    msu1Resume?: boolean,
-    reduceFlash?: boolean,
-    sprite?: ArrayBuffer
+    heartSpeed?: "off" | "quarter" | "half" | "normal" | "double";
+    heartColor?: "red" | "blue" | "green" | "yellow";
+    menuSpeed?: "slow" | "normal" | "fast" | "instant";
+    quickswap?: boolean;
+    backgroundMusic?: boolean;
+    msu1Resume?: boolean;
+    reduceFlash?: boolean;
+    sprite?: ArrayBuffer;
 }
 ```

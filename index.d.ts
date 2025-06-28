@@ -5,7 +5,7 @@
  * @param options Post-generation options.
  * @returns The patched ROM.
  */
-export default async function patch(base: string, seed: SeedAPIData, options?: PatchOptions): Promise<Uint8Array>;
+export default function patch(base: string, seed: SeedAPIData, options?: PatchOptions): Promise<Uint8Array>;
 
 interface SeedAPIData {
     generated: string,
