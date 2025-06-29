@@ -1,5 +1,4 @@
 import * as fs from "node:fs/promises";
-import * as path from "node:path";
 import * as bps from "bps";
 import center from "center-align";
 import {
@@ -23,12 +22,12 @@ export default async function(base, seed, options) {
 
     // Apply base patch first
     if (!("current_rom_hash" in seed)) {
-        const res = await fetch(path.join(URL, `api/h/${seed.hash}`));
+        const res = await fetch(`${URL}/api/h/${seed.hash}`);
         const json = await res.json();
         seed.current_rom_hash = json.md5;
     }
 
-    const bpsFile = await fetch(path.join(URL, `bps/${seed.current_rom_hash}.bps`))
+    const bpsFile = await fetch(`${URL}/bps/${seed.current_rom_hash}.bps`)
         .then(res => res.arrayBuffer());
     const patch = new Uint8Array(bpsFile);
     const { instructions } = bps.parse(patch);

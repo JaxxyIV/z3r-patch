@@ -1,6 +1,6 @@
 {
   "name": "z3r-patch",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A JS module for patching ALTTPR seeds",
   "main": "index.js",
   "type": "module",
