@@ -1,4 +1,4 @@
-const charBytes = {
+export const charBytes = {
     " ": [0x9F, 0x9F], "0": [0x53, 0x79], "1": [0x54, 0x7A],
     "2": [0x55, 0x7B], "3": [0x56, 0x7C], "4": [0x57, 0x7D],
     "5": [0x58, 0x7E], "6": [0x59, 0x7F], "7": [0x5A, 0x80],
@@ -15,14 +15,14 @@ const charBytes = {
     "/": [0xDB, 0xEE], ":": [0xDD, 0xF0], "_": [0xDE, 0xF1],
 };
 
-const heartColorBytes = {
+export const heartColorBytes = {
     red: 0x00,
     blue: 0x01,
     green: 0x02,
     yellow: 0x03,
 };
 
-const heartSpeedBytes = {
+export const heartSpeedBytes = {
     off: 0,
     double: 16,
     normal: 32,
@@ -30,16 +30,9 @@ const heartSpeedBytes = {
     quarter: 128,
 };
 
-const menuSpeedBytes = {
+export const menuSpeedBytes = {
     slow: 0x04,
     normal: 0x08,
     fast: 0x10,
     instant: 0xe8,
-};
-
-export {
-    charBytes,
-    heartColorBytes,
-    heartSpeedBytes,
-    menuSpeedBytes,
 };

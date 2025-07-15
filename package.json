@@ -36,6 +36,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@maseya/z3pr": "^1.0.1",
     "bps": "^2.0.1",
     "center-align": "^1.0.1"
   }

@@ -26,9 +26,7 @@ const patch = require("z3r-patch"); // WRONG!
 After generating your seed on alttpr.com, you can apply it to your legally obtained JP 1.0 ALTTP ROM:
 ```js
 import * as fs from "node:fs/promises";
-import patchZ3R from "z3r-patch";
-
-const angelUrl = "https://alttpr-assets.s3.us-east-2.amazonaws.com/angel.1.zspr";
+import patch from "z3r-patch";
 
 // Generate seed with open 7/7 settings:
 const seed = await fetch("https://alttpr.com/api/randomizer", {
@@ -67,21 +65,33 @@ const seed = await fetch("https://alttpr.com/api/randomizer", {
 }).then(res => res.json());
 
 // Fetch a custom sprite's .zspr file:
-const angel = await fetch(angelUrl)
+const angel = await fetch("https://alttpr-assets.s3.us-east-2.amazonaws.com/angel.1.zspr")
     .then(res => res.arrayBuffer());
 
 // Apply the seed patches and post-generation options:
-const rom = await patchZ3R(pathToJp10Rom, seed, {
+const rom = await patch(pathToJp10Rom, seed, {
     heartColor: "blue",
     heartSpeed: "half",
     quickswap: true,
     reduceFlash: true,
+    sfxShuffle: true,
     sprite: angel
 });
 
 // Write the patched ROM to a new file:
 await fs.writeFile(`./${seed.hash}.sfc`, rom);
 ```
+
+z3r-patch supports the following post-generation settings:
+* Changing your heart color
+* Changing the heart beep speed
+* Item quickswap
+* Toggling background music
+* Toggling MSU-1 resume
+* Toggling reduced flashing
+* Changing your sprite, including using custom sprites
+* Changing your menu speed **(NOT RACE LEGAL)**
+* Randomizing sound effects **(NOT RACE LEGAL)**
 
 ### API
 ```ts
@@ -105,6 +115,7 @@ interface PatchOptions {
     backgroundMusic?: boolean;
     msu1Resume?: boolean;
     reduceFlash?: boolean;
+    sfxShuffle?: boolean;
     sprite?: ArrayBuffer;
 }
 ```
