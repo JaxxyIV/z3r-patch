@@ -121,16 +121,16 @@ interface PatchOptions {
     sprite?: ArrayBuffer;
 }
 
-/* From @maseya/z3pr-js:1.0.2 */
+/* From @jaxxy/z3pr-js:1.0.2 */
 interface PaletteRandomizerOptions<T extends SeedValue> {
-    mode?: PaletteMode
-    randomize_overworld?: boolean
-    randomize_dungeon?: boolean
-    randomize_link_sprite?: boolean
-    randomize_sword?: boolean
-    randomize_shield?: boolean
-    randomize_hud?: boolean
-    seed?: T
+    mode?: PaletteMode;
+    randomize_overworld?: boolean;
+    randomize_dungeon?: boolean;
+    randomize_link_sprite?: boolean;
+    randomize_sword?: boolean;
+    randomize_shield?: boolean;
+    randomize_hud?: boolean;
+    seed?: T;
 }
 
 type SeedValue = number | [number, number] | [number, number, number];

@@ -1,3 +1,5 @@
+import { PaletteMode, PaletteRandomizerOptions, SeedValue } from "@jaxxy/z3pr";
+
 /**
  * Applies a randomizer seed patch to a JP 1.0 LTTP ROM.
  * @param base The file path to the JP 1.0 ROM.
@@ -34,18 +36,3 @@ interface PatchOptions {
 type HeartSpeed = "off" | "quarter" | "half" | "normal" | "double";
 type HeartColor = "red" | "blue" | "green" | "yellow";
 type MenuSpeed = "slow" | "normal" | "fast" | "instant";
-
-/* From @maseya/z3pr-js:1.0.2 */
-interface PaletteRandomizerOptions<T extends SeedValue> {
-    mode?: PaletteMode
-    randomize_overworld?: boolean
-    randomize_dungeon?: boolean
-    randomize_link_sprite?: boolean
-    randomize_sword?: boolean
-    randomize_shield?: boolean
-    randomize_hud?: boolean
-    seed?: T
-}
-
-type SeedValue = number | [number, number] | [number, number, number];
-type PaletteMode = "none" | "maseya" | "grayscale" | "negative" | "blackout" | "classic" | "dizzy" | "sick" | "puke";

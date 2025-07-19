@@ -1,9 +1,7 @@
-import { createRequire } from "node:module";
-const require = createRequire(import.meta.url);
 import * as fs from "node:fs";
 import * as bps from "bps";
 import center from "center-align";
-const z3pr = require("@maseya/z3pr"); // Temp fix until 1.0.2 is pushed to npm
+import * as z3pr from "@jaxxy/z3pr";
 import shuffleSfx from "./sfx.js";
 import {
     charBytes,
@@ -22,7 +20,7 @@ const URL = "https://alttpr.com";
  * @returns {Promise<Uint8Array>} The patched ROM.
  */
 export default async function(base, seed, options = {}) {
-    const { buffer } = fs.readFile(base);
+    const { buffer } = fs.readFileSync(base);
     let rom = new Uint8Array(buffer);
 
     // Apply base patch first
@@ -263,9 +261,9 @@ export default async function(base, seed, options = {}) {
  * @prop {boolean} [quickswap]
  * @prop {boolean} [backgroundMusic]
  * @prop {boolean} [msu1Resume]
- * @prop {boolean|string|object} [paletteShuffle]
+ * @prop {boolean|z3pr.PaletteMode|z3pr.PaletteRandomizerOptions<z3pr.SeedValue>} [paletteShuffle]
  * @prop {boolean} [reduceFlash]
- * @prop {boolean|"cluck"} [sfxShuffle]
+ * @prop {boolean} [sfxShuffle]
  * @prop {ArrayBuffer} [sprite]
  */
 
