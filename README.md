@@ -16,7 +16,7 @@ import patch from "npm:z3r-patch";
 ```
 
 ## Usage
-To use z3r-patch in your project, use ES6 import syntax. You cannot import z3r-patch with `require`:
+To use z3r-patch in your project, use ES6 import syntax. You cannot import z3r-patch with `require`.
 ```js
 import patch from "z3r-patch"; // OK!
 const { default: patch } = await import("z3r-patch"); // OK!
@@ -90,14 +90,15 @@ z3r-patch supports the following post-generation settings:
 * Toggling MSU-1 resume
 * Toggling reduced flashing
 * Changing your sprite, including using custom sprites
+* Extended palette shuffling options
 * Changing your menu speed **(NOT RACE LEGAL)**
 * Randomizing sound effects **(NOT RACE LEGAL)**
 
 ### API
 ```ts
-export default function(base: string, seed: SeedAPIData, options: PatchOptions): Promise<Uint8Array>;
+export default function(base: string, seed: VTSeed, options: PatchOptions): Promise<Uint8Array>;
 
-interface SeedAPIData {
+interface VTSeed {
     generated: string;
     hash: string;
     logic: string;
@@ -115,7 +116,23 @@ interface PatchOptions {
     backgroundMusic?: boolean;
     msu1Resume?: boolean;
     reduceFlash?: boolean;
+    paletteShuffle?: boolean | PaletteMode | PaletteRandomizerOptions<SeedValue>;
     sfxShuffle?: boolean;
     sprite?: ArrayBuffer;
 }
+
+/* From @maseya/z3pr-js:1.0.2 */
+interface PaletteRandomizerOptions<T extends SeedValue> {
+    mode?: PaletteMode
+    randomize_overworld?: boolean
+    randomize_dungeon?: boolean
+    randomize_link_sprite?: boolean
+    randomize_sword?: boolean
+    randomize_shield?: boolean
+    randomize_hud?: boolean
+    seed?: T
+}
+
+type SeedValue = number | [number, number] | [number, number, number];
+type PaletteMode = "none" | "maseya" | "grayscale" | "negative" | "blackout" | "classic" | "dizzy" | "sick" | "puke";
 ```

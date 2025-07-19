@@ -1,9 +1,9 @@
 {
   "name": "z3r-patch",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A JS module for patching ALTTPR seeds",
-  "main": "index.js",
   "type": "module",
+  "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,14 +14,8 @@
     "alttpr",
     "alttp",
     "z3r",
-    "randomizer"
-  ],
-  "files": [
-    "*.js",
-    "*.json",
-    "*.md",
-    "*.d.ts",
-    ".gitignore"
+    "randomizer",
+    "romhacking"
   ],
   "repository": {
     "url": "https://github.com/JaxxyIV/z3r-patch.git",

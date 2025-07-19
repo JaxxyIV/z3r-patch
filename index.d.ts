@@ -5,31 +5,47 @@
  * @param options Post-generation options.
  * @returns The patched ROM.
  */
-export default function(base: string, seed: SeedAPIData, options?: PatchOptions): Promise<Uint8Array>;
+export default function(base: string, seed: VTSeed, options?: PatchOptions): Promise<Uint8Array>;
 
-interface SeedAPIData {
-    generated: string,
-    hash: string,
-    logic: string,
-    patch: Record<number, number[]>[],
-    size: number,
-    spoiler: object,
-    current_rom_hash?: string,
+interface VTSeed {
+    generated: string
+    hash: string
+    logic: string
+    patch: Record<number, number[]>[]
+    size: number
+    spoiler: object
+    current_rom_hash?: string
 }
 
 interface PatchOptions {
-    heartSpeed?: HeartSpeed,
-    heartColor?: HeartColor,
-    menuSpeed?: MenuSpeed,
-    quickswap?: boolean,
-    backgroundMusic?: boolean,
-    msu1Resume?: boolean,
-    reduceFlash?: boolean,
-    sfxShuffle?: boolean,
-    sprite?: ArrayBuffer,
+    heartSpeed?: HeartSpeed
+    heartColor?: HeartColor
+    menuSpeed?: MenuSpeed
+    quickswap?: boolean
+    backgroundMusic?: boolean
+    msu1Resume?: boolean
+    reduceFlash?: boolean
+    paletteShuffle?: boolean | PaletteMode | PaletteRandomizerOptions<SeedValue>
+    sfxShuffle?: boolean
+    sprite?: ArrayBuffer
 }
 
 /* String Types */
 type HeartSpeed = "off" | "quarter" | "half" | "normal" | "double";
 type HeartColor = "red" | "blue" | "green" | "yellow";
 type MenuSpeed = "slow" | "normal" | "fast" | "instant";
+
+/* From @maseya/z3pr-js:1.0.2 */
+interface PaletteRandomizerOptions<T extends SeedValue> {
+    mode?: PaletteMode
+    randomize_overworld?: boolean
+    randomize_dungeon?: boolean
+    randomize_link_sprite?: boolean
+    randomize_sword?: boolean
+    randomize_shield?: boolean
+    randomize_hud?: boolean
+    seed?: T
+}
+
+type SeedValue = number | [number, number] | [number, number, number];
+type PaletteMode = "none" | "maseya" | "grayscale" | "negative" | "blackout" | "classic" | "dizzy" | "sick" | "puke";
